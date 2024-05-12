@@ -174,6 +174,7 @@
             // numPlaces
             // 
             numPlaces.Location = new Point(521, 66);
+            numPlaces.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
             numPlaces.Name = "numPlaces";
             numPlaces.Size = new Size(120, 23);
             numPlaces.TabIndex = 17;

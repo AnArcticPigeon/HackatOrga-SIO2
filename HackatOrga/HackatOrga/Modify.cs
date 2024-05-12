@@ -84,7 +84,7 @@ namespace HackatOrga
                 labError.Text = "";
             }
 
-            catch 
+            catch
             {
             }
 
@@ -92,25 +92,50 @@ namespace HackatOrga
 
         private void btnModifier_Click(object sender, EventArgs e)
         {
-            Ville ville = new Ville();
-            ville = cnx.Villes.Where(ville => ville.Nom == cbbVille.Text).FirstOrDefault();
+            // Test les valeur renseignée par l'utilisateur
+            if (tbxNom.Text.Length < 5)
+            {
+                MessageBox.Show("Le nom du Hackathon renseignée est soit vide soit trop court.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (numPlaces.Value < 10)
+            {
+                MessageBox.Show("Le hackathon doit avoir un minimum de 10 places.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (tbxTheme.Text.Length < 6)
+            {
+                MessageBox.Show("Le Theme renseignée est soit vide soit trop court.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (tbxAddresse.Text.Length < 1)
+            {
+                MessageBox.Show("L'Addresse renseignée est soit vide soit trop courte.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (cbbVille.SelectedIndex == -1)
+            {
+                MessageBox.Show("La ville ne peut pas être vide.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (dtpDateDeb.Value > dtpDateFin.Value)
+            {
+                MessageBox.Show("La date de début du Hackathon doit obligatoirement être antérieure ou égale à la date de fin.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Ville ville = new Ville();
+                ville = cnx.Villes.Where(ville => ville.Nom == cbbVille.Text).FirstOrDefault();
 
-            unHackaton.NbPlace = Convert.ToInt16(numPlaces.Value);
-            unHackaton.Theme = tbxTheme.Text;
-            unHackaton.Addresse = tbxAddresse.Text;
-            unHackaton.IdVilleNavigation = ville;
-            unHackaton.DateDeb = DateOnly.FromDateTime(dtpDateDeb.Value);
-            unHackaton.DateFin = DateOnly.FromDateTime(dtpDateFin.Value);
-            unHackaton.Nom = tbxNom.Text;
-            unHackaton.Image = tbxURL.Text;
+                unHackaton.NbPlace = Convert.ToInt16(numPlaces.Value);
+                unHackaton.Theme = tbxTheme.Text;
+                unHackaton.Addresse = tbxAddresse.Text;
+                unHackaton.IdVilleNavigation = ville;
+                unHackaton.DateDeb = DateOnly.FromDateTime(dtpDateDeb.Value);
+                unHackaton.DateFin = DateOnly.FromDateTime(dtpDateFin.Value);
+                unHackaton.Nom = tbxNom.Text;
+                unHackaton.Image = tbxURL.Text;
 
-
-
-            cnx.Update(unHackaton);
-            cnx.SaveChanges();
-            this.Hide();
-            (new Menu()).Show();
-
+                cnx.Update(unHackaton);
+                cnx.SaveChanges();
+                this.Close();
+                new Menu().Show();
+            }
         }
 
         private void btnMenu_Click(object sender, EventArgs e)

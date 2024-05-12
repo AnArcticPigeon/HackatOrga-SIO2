@@ -25,10 +25,8 @@ namespace HackatOrga
             ApplicationConfiguration.Initialize();
             Application.Run(new Menu());
 
-            
-
-
-
         }
     }
 }
+
+// command scafold: Scaffold-DbContext -d "server=192.168.49.1;port=3306;user=hackaweb;password=password;database=Hackathon;charset=utf8" Pomelo.EntityFrameworkCore.MySql -Outputdir Models -f

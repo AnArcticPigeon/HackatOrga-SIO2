@@ -39,12 +39,12 @@ namespace HackatOrga
         private void btnMod_Click(object sender, EventArgs e)
         {
             this.Hide();
-            (new Modify()).Show();
+            new Modify().Show();
         }
 
         private void btnSupp_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Êtez-vous sur de voiloir supprimer le Hackaton " + ValueHackaton.Nom, "Suppression", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Êtez-vous sur de vouloir supprimer le Hackaton " + ValueHackaton.Nom, "Suppression", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 cnx.Remove((Hackaton)lsthackat.SelectedItem);
@@ -136,18 +136,15 @@ namespace HackatOrga
             page.Paragraphs.Add(description);
 
 
-            // Enregistrer le PDF 
-            document.Save("C:\\Users\\loaki\\Desktop\\document.pdf");
+            // Recupere le chemin vers le bureau de l'utilisateur
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 
-            
-            
-            
-            
-            
-            
-            
-            
-            Process.Start(GetSystemDefaultBrowser(), "C:\\Users\\loaki\\Desktop\\document.pdf");
+            // Enregistrer le PDF 
+            document.Save(desktopPath + "\\document.pdf");
+
+            string filePath = Path.Combine(desktopPath, "document.pdf");
+
+            Process.Start(GetSystemDefaultBrowser(), desktopPath + "\\document.pdf");
 
         }
 
@@ -187,7 +184,7 @@ namespace HackatOrga
         }
             private void btnStatistiques_Click(object sender, EventArgs e)
         {
-            (new Statistique()).Show();
+            new Statistique().Show();
             this.Hide();
         }
     }

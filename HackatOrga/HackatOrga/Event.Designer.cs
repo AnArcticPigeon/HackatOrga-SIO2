@@ -86,6 +86,7 @@
             // nudPlace
             // 
             nudPlace.Location = new Point(336, 276);
+            nudPlace.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
             nudPlace.Name = "nudPlace";
             nudPlace.Size = new Size(120, 23);
             nudPlace.TabIndex = 5;
