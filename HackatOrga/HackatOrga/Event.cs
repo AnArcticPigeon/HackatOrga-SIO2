@@ -172,5 +172,117 @@ namespace HackatOrga
             (new Menu()).Show();
             this.Hide();
         }
+
+        private void btnMenu_Click_1(object sender, EventArgs e)
+        {
+            (new Menu()).Show();
+            this.Hide();
+        }
+
+        private void btnValider_Click_1(object sender, EventArgs e)
+        {
+            // evenement de type Atelier
+            if (cbType.SelectedIndex == 0)
+            {
+                if (nudPlace.Value < 2)
+                {
+                    MessageBox.Show("L'Atelier doit avoir un minimum de 2 places.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (dtpDeb.Value > dtpFin.Value)
+                {
+                    MessageBox.Show("L'Atelier ne peut pas avoir une date de début suppérieur a sa date de fin.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (txbSalle.Text.Length < 1)
+                {
+                    MessageBox.Show("L'Atelier doit avoir une salle renseignée.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                Evenement newEvenement = new Evenement()
+                {
+
+                    IdHackaton = Menu.ValueHackaton.Id,
+                    Salle = txbSalle.Text,
+                    DateDeb = DateOnly.FromDateTime(dtpDeb.Value),
+                    DateFin = DateOnly.FromDateTime(dtpFin.Value),
+                    Type = "place",
+                    //theme
+                    NbPlace = Convert.ToInt16(nudPlace.Value),
+                    //idIntervenant	
+
+                };
+
+
+                //Ajout de l'objet au dataContext
+                cnx.Evenements.Add(newEvenement);
+                //Enregistrement dans la BD
+                cnx.SaveChanges();
+
+                this.Close();
+                new Menu().Show();
+
+            }
+            // evenement de type Conference
+            else
+            {
+                if (txbTheme.Text.Length < 1)
+                {
+                    MessageBox.Show("La conférence doit avoir un théme.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (dtpDeb.Value > dtpFin.Value)
+                {
+                    MessageBox.Show("L'Atelier ne peut pas avoir une date de début suppérieur a sa date de fin.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (cbIntervenant.SelectedIndex <= -1)
+                {
+                    MessageBox.Show("L'Atelier doit avoir une salle renseignée.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                Evenement newEvenement = new Evenement()
+                {
+                    IdHackaton = Menu.ValueHackaton.Id,
+                    Salle = txbSalle.Text,
+                    DateDeb = DateOnly.FromDateTime(dtpDeb.Value),
+                    DateFin = DateOnly.FromDateTime(dtpFin.Value),
+                    Type = "theme",
+                    Theme = txbTheme.Text,
+                    //nbPlace
+                    IdIntervenant = cbIntervenant.SelectedIndex
+
+                };
+
+                //Ajout de l'objet au dataContext
+                cnx.Evenements.Add(newEvenement);
+                //Enregistrement dans la BD
+                cnx.SaveChanges();
+
+                this.Close();
+                new Menu().Show();
+
+            }
+        }
+
+        private void cbType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // evenement de type Atelier
+            if (cbType.SelectedIndex == 0)
+            {
+                labThNb.Location = new Point(234, 283);
+                labThNb.Text = "Nombre place :";
+                nudPlace.Visible = true;
+                cbIntervenant.Visible = false;
+                txbTheme.Visible = false;
+                labIntervenant.Visible = false;
+            }
+            // evenement de type Conference
+            else if (cbType.SelectedIndex == 1)
+            {
+                labThNb.Location = new Point(287, 283);
+                labThNb.Text = "Thème :";
+                nudPlace.Visible = false;
+                cbIntervenant.Visible = true;
+                txbTheme.Visible = true;
+                labIntervenant.Visible = true;
+            }
+        }
     }
 }

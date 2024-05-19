@@ -116,18 +116,24 @@ namespace HackatOrga
             header.Position = new Position(130, 720);
             page.Paragraphs.Add(header);
 
-
-
-            foreach (Equipe equipe in listequipes)
+            if (listequipes.Count() < 1)
             {
-                lstPDF += " \n \n \n \n" + equipe.NomEquipe + " : \n \n ";
-                foreach (Utilisateur utilisateur in equipe.Utilisateurs)
-                {
-                    lstPDF += utilisateur.Nom + utilisateur.Prenom + " \n";
-                }
-
-
+                lstPDF = "\n \n \n \n Aucune Equipe Existante pour ce Hackathon :'(";
             }
+            else
+            {
+                foreach (Equipe equipe in listequipes)
+                {
+                    lstPDF += " \n \n \n \n" + equipe.NomEquipe + " : \n \n ";
+                    foreach (Utilisateur utilisateur in equipe.Utilisateurs)
+                    {
+                        lstPDF += utilisateur.Nom + utilisateur.Prenom + " \n";
+                    }
+
+
+                }
+            }
+
             var descriptionText = lstPDF;
             var description = new TextFragment(descriptionText);
             description.TextState.Font = FontRepository.FindFont("Times New Roman");

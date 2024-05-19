@@ -92,6 +92,7 @@
             btnMenu.TabIndex = 29;
             btnMenu.Text = "Menu";
             btnMenu.UseVisualStyleBackColor = true;
+            btnMenu.Click += btnMenu_Click_1;
             // 
             // btnValider
             // 
@@ -101,6 +102,7 @@
             btnValider.TabIndex = 28;
             btnValider.Text = "Valider";
             btnValider.UseVisualStyleBackColor = true;
+            btnValider.Click += btnValider_Click_1;
             // 
             // Type
             // 
@@ -150,7 +152,7 @@
             // labThNb
             // 
             labThNb.AutoSize = true;
-            labThNb.Location = new Point(301, 231);
+            labThNb.Location = new Point(290, 281);
             labThNb.Name = "labThNb";
             labThNb.Size = new Size(38, 15);
             labThNb.TabIndex = 22;
@@ -166,7 +168,7 @@
             // 
             // nudPlace
             // 
-            nudPlace.Location = new Point(350, 224);
+            nudPlace.Location = new Point(341, 279);
             nudPlace.Maximum = new decimal(new int[] { 999, 0, 0, 0 });
             nudPlace.Name = "nudPlace";
             nudPlace.Size = new Size(120, 23);
@@ -174,7 +176,7 @@
             // 
             // txbTheme
             // 
-            txbTheme.Location = new Point(359, 223);
+            txbTheme.Location = new Point(349, 281);
             txbTheme.Name = "txbTheme";
             txbTheme.Size = new Size(100, 23);
             txbTheme.TabIndex = 19;
@@ -207,6 +209,7 @@
             cbType.Name = "cbType";
             cbType.Size = new Size(121, 23);
             cbType.TabIndex = 15;
+            cbType.SelectedIndexChanged += cbType_SelectedIndexChanged;
             // 
             // Event
             // 
