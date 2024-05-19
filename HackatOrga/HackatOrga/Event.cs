@@ -86,7 +86,7 @@ namespace HackatOrga
                 {
                     MessageBox.Show("L'Atelier doit avoir un minimum de 2 places.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                else if(dtpDeb.Value > dtpFin.Value)
+                else if (dtpDeb.Value > dtpFin.Value)
                 {
                     MessageBox.Show("L'Atelier ne peut pas avoir une date de début suppérieur a sa date de fin.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

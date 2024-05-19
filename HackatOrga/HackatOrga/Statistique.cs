@@ -1,14 +1,6 @@
 ﻿using HackatOrga.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace HackatOrga
 {
@@ -61,13 +53,11 @@ namespace HackatOrga
 
         private void btnAttelier_Click(object sender, EventArgs e)
         {
-            // Check if a hackathon is selected
             if (dgvStats.SelectedRows.Count > 0)
             {
-                // Get the hackathon ID from the selected row's "IdHackaton" column
                 var selectedHackathonId = Convert.ToInt32(dgvStats.SelectedRows[0].Cells["IdHackaton"].Value);
 
-                // Fetch ateliers for the selected hackathon where the Type is "place"
+                // get les ateliers du Hackathon et le nombre de participants a chaque ateliers
                 var ateliers = cnx.Evenements
                   .Where(a => a.IdHackaton == selectedHackathonId && a.Type == "place")
                   .Select(a => new
@@ -80,7 +70,6 @@ namespace HackatOrga
                       a.NbPlace
                   }).ToList();
 
-                // Fill Data Grid Ateliert with the Ateliers and their participant counts
                 dgvAtelier.DataSource = ateliers;
 
                 foreach (DataGridViewRow row in dgvAtelier.Rows)

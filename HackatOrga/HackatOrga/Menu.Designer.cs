@@ -35,14 +35,15 @@
             btnLstP = new Button();
             btnCreate = new Button();
             lsthackat = new ListBox();
+            btnConference = new Button();
             btnStatistiques = new Button();
             SuspendLayout();
             // 
             // btnStatistiques
             // 
-            btnStatistiques.Location = new Point(586, 284);
+            btnStatistiques.Location = new Point(496, 274);
             btnStatistiques.Name = "btnStatistiques";
-            btnStatistiques.Size = new Size(75, 23);
+            btnStatistiques.Size = new Size(83, 23);
             btnStatistiques.TabIndex = 7;
             btnStatistiques.Text = "Statistiques";
             btnStatistiques.UseVisualStyleBackColor = true;
@@ -98,7 +99,7 @@
             // 
             // btnCreate
             // 
-            btnCreate.Location = new Point(465, 285);
+            btnCreate.Location = new Point(541, 311);
             btnCreate.Margin = new Padding(3, 2, 3, 2);
             btnCreate.Name = "btnCreate";
             btnCreate.Size = new Size(82, 22);
@@ -118,11 +119,22 @@
             lsthackat.TabIndex = 6;
             lsthackat.SelectedIndexChanged += lsthackat_SelectedIndexChanged;
             // 
+            // btnConference
+            // 
+            btnConference.Location = new Point(585, 274);
+            btnConference.Name = "btnConference";
+            btnConference.Size = new Size(83, 23);
+            btnConference.TabIndex = 8;
+            btnConference.Text = "Conférences";
+            btnConference.UseVisualStyleBackColor = true;
+            btnConference.Click += btnConference_Click;
+            // 
             // Menu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1142, 436);
+            Controls.Add(btnConference);
             Controls.Add(btnStatistiques);
             Controls.Add(lsthackat);
             Controls.Add(btnCreate);
@@ -146,5 +158,6 @@
         private Button btnCreate;
         private ListBox lsthackat;
         private Button btnStatistiques;
+        private Button btnConference;
     }
 }

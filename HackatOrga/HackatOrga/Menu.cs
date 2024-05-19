@@ -182,9 +182,15 @@ namespace HackatOrga
             //return the value
             return name;
         }
-            private void btnStatistiques_Click(object sender, EventArgs e)
+        private void btnStatistiques_Click(object sender, EventArgs e)
         {
             new Statistique().Show();
+            this.Hide();
+        }
+
+        private void btnConference_Click(object sender, EventArgs e)
+        {
+            new Conference().Show();
             this.Hide();
         }
     }
